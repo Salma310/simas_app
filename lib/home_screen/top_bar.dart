@@ -1,0 +1,74 @@
+import 'package:flutter/material.dart';
+
+class TopBar extends StatelessWidget {
+  const TopBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Color(0xFF4894FE),
+        borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
+        ),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 9, vertical: 13),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            '11:39',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              fontFamily: 'Roboto',
+            ),
+          ),
+          Row(
+            children: [
+              _buildSignalStrength(),
+              SizedBox(width: 7),
+              _buildBatteryIcon(),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSignalStrength() {
+    return Row(
+      children: List.generate(
+        4,
+        (index) => Container(
+          width: 4,
+          height: 12 - (index * 2),
+          margin: EdgeInsets.only(right: 1),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(1),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBatteryIcon() {
+    return Row(
+      children: [
+        Icon(Icons.signal_cellular_alt, color: Colors.white, size: 16),
+        SizedBox(width: 7),
+        Container(
+          width: 26,
+          height: 12,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(2),
+          ),
+        ),
+      ],
+    );
+  }
+}
